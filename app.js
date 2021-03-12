@@ -1,16 +1,11 @@
-var express = require('express');
-var http = require('http');
-var app = express();
-var server = http.createServer(app);
+const express = require('express');
+const app = express();
 
-app.get('/', function(req, res) {
-    res.send('root page');
+app.set('port', process.env.PORT || 3000);
+app.get('/', (req, res) => {
+    res.send('Hello, Express');
 })
 
-app.get('/start', function(req, res) {
-    res.send('start page');
-});
-
-server.listen(3000, '127.0.0.1', function() {
-    console.log('Server listen on port ' + server.address().port);
+app.listen(app.get('port'), () => {
+    console.log('Server listen on port ', app.get('port'));
 });

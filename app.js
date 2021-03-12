@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const {sequelize} = require('./models');
+// const naverapi = require('./naverapi');
 
 // server execute
 app.set('port', process.env.PORT || 3000);

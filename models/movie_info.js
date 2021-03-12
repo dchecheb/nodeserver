@@ -10,26 +10,23 @@ module.exports = class MovieInfo extends Sequelize.Model {
                 autoIncrement: true,
             },
             title: {
-                type: Sequelize.STRING(20),
+                type: Sequelize.STRING(50),
                 allowNull: false,
             },
             image: {
-                type: Sequelize.STRING(20),
+                type: Sequelize.STRING(200),
             },
             subtitle: {
-                type: Sequelize.STRING(20),
+                type: Sequelize.STRING(50),
             },
             pubddate: {
                 type: Sequelize.DATE,
             },
             director: {
-                type: Sequelize.STRING(20),
+                type: Sequelize.STRING(50),
             },
             actor: {
-                type: Sequelize.STRING(20),
-            },
-            genre: {
-                type: Sequelize.STRING(20),
+                type: Sequelize.STRING(50),
             },
             rated_num: {
                 type: Sequelize.INTEGER,

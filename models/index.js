@@ -1,24 +1,28 @@
 const Sequelize = require('sequelize');
+const MovieInfo = require('./movie_info');
+const User = require('./user');
+const MovieReview = require('./movie_review');
+
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, process.env.TEMPKEY, config);
-}
+const sequelize = new Sequelize(config.database, config.username, process.env.TEMPKEY, config);
 
+// set sequelize
 db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-// connect to mysql
-sequelize.sync({ force: false})
-    .then(() => {
-        console.log('MySQL connection successful.');
-    })
-    .catch((err) => {
-        console.error(err);
-    });
-    
+// init tables
+db.MovieInfo = MovieInfo;
+db.User = User;
+db.MovieReview = MovieReview;
+MovieInfo.init(sequelize);
+User.init(sequelize);
+MovieReview.init(sequelize);
+MovieInfo.associate(db);
+User.associate(db);
+MovieReview.associate(db);
+
+// export
 module.exports = db;

@@ -11,3 +11,12 @@ app.get('/', (req, res) => {
 app.listen(app.get('port'), () => {
     console.log('Server listen on port ', app.get('port'));
 });
+
+// connect to mysql
+sequelize.sync({ force: false})
+    .then(() => {
+        console.log('MySQL connection successful.');
+    })
+    .catch((err) => {
+        console.error(err);
+    });
